@@ -1,27 +1,22 @@
 import React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import globalStyles from '../../styles/components/shared/button.module.css'
 
 const Button = (props) => {
-  const [isHovering, setIsHovering] = useState(false);
-  const navigate = useNavigate()
+
+  const inlineStyles = {
+    button: {
+      color: `${props.color}`,
+      backgroundColor: `${props.bgColor}`,
+    },
+    other: props.style
+  }
 
   return (
     <button
-      className={props.className}
-      style={{
-        color: `${props.color}`,
-        backgroundColor: `${props.bgColor}`,
-        padding: "8px 16px",
-        border: "none",
-        borderRadius: "8px",
-        width: "105px",
-        cursor: "pointer",
-        fontWeight: isHovering ? "bold" : "normal",
-      }}
-      onClick={() => {navigate(props.to)}}
-      onMouseEnter={() => {setIsHovering(true)}}
-      onMouseLeave={() => {setIsHovering(false)}}
+      className={`${globalStyles.button} ${props.class}`}
+      style={{...inlineStyles.button, ...inlineStyles.other}}
+      onClick={props.onClick}
+      type={props.type ? props.type : 'button'}
     >
       {props.text}
     </button>

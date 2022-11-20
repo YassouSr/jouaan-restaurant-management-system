@@ -1,9 +1,11 @@
 import Container from "../shared/Container";
-import styles from "../../styles/footer.module.css";
-import Logo from "../../assets/logo_bg_dark.svg";
+import styles from "../../styles/components/shared/footer.module.css";
+import Logo from "../../assets/imgs/logo_bg_dark.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { Link } from "react-router-dom";
+import { SHORT_ADDRESS, EMAIL, TEL } from "../../assets/data/dummy";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -14,19 +16,16 @@ const Footer = () => {
             <h3 className={styles.heading}>Useful links</h3>
             <ul className={styles.list}>
               <li className={styles.listElement}>
-                <Link to="/">Home</Link>
+                <NavLink to="/">home</NavLink>
               </li>
               <li className={styles.listElement}>
-                <Link to="/">Languages</Link>
+                <NavLink to="/">how it works</NavLink>
               </li>
               <li className={styles.listElement}>
-                <Link to="/">Customer Support</Link>
+                <NavLink to="/">customer support</NavLink>
               </li>
               <li className={styles.listElement}>
-                <Link to="/">How It Works</Link>
-              </li>
-              <li className={styles.listElement}>
-                <Link to="/">Careers</Link>
+                <NavLink to="/">languages</NavLink>
               </li>
             </ul>
           </div>
@@ -45,7 +44,7 @@ const Footer = () => {
                   icon={solid("location-dot")}
                 />
               </div>
-              <p className={styles.footerParagraph}>Calle Remigio Sebastià</p>
+              <p className={styles.footerParagraph}>{SHORT_ADDRESS}</p>
             </div>
 
             <div className={styles.contactElement}>
@@ -55,7 +54,7 @@ const Footer = () => {
                   icon={solid("envelope")}
                 />
               </div>
-              <p className={styles.footerParagraph}>exemple@domain.com</p>
+              <p className={styles.footerParagraph}>{EMAIL}</p>
             </div>
 
             <div className={styles.contactElement}>
@@ -65,7 +64,7 @@ const Footer = () => {
                   icon={solid("phone")}
                 />
               </div>
-              <p className={styles.footerParagraph}>+213 854 77 45 79</p>
+              <p className={styles.footerParagraph}>{TEL}</p>
             </div>
           </div>
         </div>

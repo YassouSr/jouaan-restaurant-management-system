@@ -1,11 +1,13 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Egg from "../../assets/egg_hero.jpg";
-import Pizza from "../../assets/pizza_hero.jpg";
+import Egg from "../../assets/imgs/egg_hero.jpg";
+import Pizza from "../../assets/imgs/pizza_hero.jpg";
 import Button from "../shared/Button";
-import styles from '../../styles/hero_section.module.css'
+import styles from '../../styles/components/landing/hero_section.module.css'
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => { 
+  const navigate = useNavigate()
   return (
     <div className={styles.heroSection}>
       <div className={styles.content}>
@@ -20,14 +22,14 @@ const HeroSection = () => {
             text="Know More"
             color="var(--primaryFirst)"
             bgColor="var(--shade5)"
-            to='/#menu'
+            onClick={() => {navigate('/#menu')}}
           />
 
           <Button 
             text="Order Now"
             color="var(--primarySecond)"
             bgColor="var(--primaryFirst)"
-            to='/signup'
+            onClick={() => {navigate('/signup')}}
           />
         </div>
       </div>

@@ -1,17 +1,19 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import DefaultLogo from "../../assets/default_logo.svg";
-import MobileLogo from "../../assets/logo_bg_light.svg";
+import DefaultLogo from "../../assets/imgs/default_logo.svg";
+import MobileLogo from "../../assets/imgs/logo_bg_light.svg";
 import Button from "../shared/Button";
 import Container from "../shared/Container";
-import styles from "../../styles/navbar.module.css";
-import { Link } from "react-router-dom";
+import styles from "../../styles/components/landing/navbar.module.css";
+import { Link, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { NAVBAR_LINKS } from "../../assets/data/dummy";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [navBtn, setNavBtn] = useState(false);
-
+  const navigate = useNavigate()
   const toggleMobileMenu = () => {
     setNavBtn(!navBtn);
   };
@@ -20,44 +22,39 @@ const Navbar = () => {
     <Container>
       <div className={styles.navbar}>
         <div className={styles.logo}>
-          <Link to="/">
+          <NavLink to="/">
             {!navBtn ? (
               <img src={DefaultLogo} alt="logo" />
             ) : (
               <img src={MobileLogo} alt="logo" />
             )}
-          </Link>
+          </NavLink>
         </div>
 
         <div className={styles.navMenu}>
           <ul>
-            <li className={styles.listElement}>
-              <Link to="/">Home</Link>
-            </li>
-            <li className={styles.listElement}>
-              <HashLink smooth to="/#menu">
-                Menu
-              </HashLink>
-            </li>
-            <li className={styles.listElement}>
-              <HashLink smooth to="/#location">
-                Location
-              </HashLink>
-            </li>
-            <li className={styles.listElement}>
-              <HashLink smooth to="/#delivery">
-                Delivery
-              </HashLink>
-            </li>
+            {NAVBAR_LINKS.map((elm, index) => {
+              return (
+                <li key={index} className={styles.listElement}>
+                  {elm.link === "/" ? (
+                    <NavLink to={elm.link}>{elm.name}</NavLink>
+                  ) : (
+                    <HashLink smooth to={elm.link}>
+                      {elm.name}
+                    </HashLink>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
 
         <Button
-          className={styles.navBtn}
+          class={styles.navBtn}
           text="Order Food"
           color="var(--primarySecond)"
           bgColor="var(--primaryFirst)"
-          to='/signup'
+          onClick={() => {navigate('/signup')}}
         />
 
         <div className={styles.humbugger} onClick={toggleMobileMenu}>
@@ -80,32 +77,27 @@ const Navbar = () => {
           className={!navBtn ? `${styles.mobileMenu}` : `${styles.menuToggle}`}
         >
           <ul className={styles.list}>
-            <li className={styles.listElement}>
-              <Link to="/">Home</Link>
-            </li>
-            <li className={styles.listElement}>
-              <HashLink smooth to="/#menu">
-                Menu
-              </HashLink>
-            </li>
-            <li className={styles.listElement}>
-              <HashLink smooth to="/#location">
-                Location
-              </HashLink>
-            </li>
-            <li className={styles.listElement}>
-              <HashLink smooth to="/#delivery">
-                Delivery
-              </HashLink>
-            </li>
+            {NAVBAR_LINKS.map((elm, index) => {
+              return (
+                <li key={index} className={styles.listElement}>
+                  {elm.link === "/" ? (
+                    <NavLink to={elm.link}>{elm.name}</NavLink>
+                  ) : (
+                    <HashLink smooth to={elm.link}>
+                      {elm.name}
+                    </HashLink>
+                  )}
+                </li>
+              );
+            })}
           </ul>
 
           <Button
-            className={styles.mobileBtn}
+            class={styles.mobileBtn}
             text="Order Food"
             color="var(--primarySecond)"
             bgColor="var(--primaryFirst)"
-            to='/signup'
+            onClick={() => {navigate('/signup')}}
           />
         </div>
       </div>

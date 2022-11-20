@@ -1,46 +1,14 @@
 import Container from '../shared/Container'
-import Slider from './Slider'
-import styles from '../../styles/menu.module.css'
+import Slider from '../shared/Slider'
+import styles from '../../styles/components/landing/menu.module.css'
+import {PLATES} from '../../assets/data/dummy'
 
 const Menu = () => {
-  var plates = [
-    {
-      id: 1,
-      rating: "5.0",
-      title: "Chicken",
-      price: 300,
-    },
-    {
-      id: 2,
-      rating: "4.0",
-      title: "Egg Omelet",
-      price: 200,
-    },
-    {
-      id: 3,
-      rating: "4.5",
-      title: "Sandwich",
-      price: 180,
-    },
-    {
-      id: 4,
-      rating: "5.0",
-      title: "Coffee with Brownie",
-      price: 300,
-    },
-    {
-      id: 5,
-      rating: "5.0",
-      title: "Panini",
-      price: 400,
-    },
-  ];
-
   return (
     <div id='menu' className={styles.menu}>
       <Container>
         <h2>Menu</h2>
-        <Slider class={styles.slider} data={plates} />
+        <Slider class={styles.slider} data={PLATES} />
       </Container>
     </div>
   );

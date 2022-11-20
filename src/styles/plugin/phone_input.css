@@ -1,0 +1,36 @@
+.react-tel-input {
+    margin-bottom: 16px;
+}
+
+.react-tel-input .form-control {
+    border-color: var(--primaryFirst);
+    border-radius: 8px;
+}
+
+.react-tel-input .flag-dropdown {
+    /* background-color: #f5f5f5; */
+    border: 1px solid var(--primaryFirst);
+    border-radius: 8px 0 0 8px;
+}
+
+.react-tel-input .selected-flag {
+    border-radius: 8px 0 0 8px;
+}
+
+.react-tel-input .flag-dropdown.open {
+    border-radius: 8px 0 0 0;
+}
+
+.react-tel-input .flag-dropdown.open .selected-flag {
+    border-radius: 8px 0 0 0;
+}
+
+.react-tel-input .country-list {
+    display: block;
+}
+
+@media screen and (max-width:768px) {
+    .react-tel-input .form-control {
+       width: 100%;
+    }
+}

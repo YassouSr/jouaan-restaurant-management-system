@@ -1,9 +1,10 @@
 import Button from "../shared/Button";
 import Container from "../shared/Container";
-import styles from "../../styles/delivery.module.css";
-import Animation from "../../assets/delivery_animation.gif";
+import styles from "../../styles/components/landing/delivery.module.css";
+import Animation from "../../assets/imgs/delivery_animation.gif";
+import { useNavigate } from "react-router-dom";
 const Delivery = () => {
-
+  const navigate = useNavigate()
   return (
     <Container>
       <div id='delivery' className={styles.delivery}>
@@ -17,7 +18,7 @@ const Delivery = () => {
             text="Order Now"
             color="var(--primaryFirst)"
             bgColor="var(--primarySecond)"
-            to='/signup'
+            onClick={() => {navigate('/signup')}}
           />
         </div>
 

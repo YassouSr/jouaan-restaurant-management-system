@@ -1,7 +1,7 @@
 .heroSection {
     display: flex;
     align-items: center;
-    height: calc(100vh - 56px)
+    height: var(--viewportHeight)
 }
  
 .content {

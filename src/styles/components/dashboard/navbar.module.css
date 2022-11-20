@@ -1,0 +1,28 @@
+.nav {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    background-color: var(--neutral);
+}
+  
+.navItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navBtn {
+    margin-right: 16px;
+}
+
+.navType {
+    color: var(--shade5);
+    text-transform: capitalize;
+    margin: 0 8px;
+}
+
+@media screen and (max-width: 500px) {
+    .navType {
+        display: none;
+    }
+}

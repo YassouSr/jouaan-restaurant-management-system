@@ -1,0 +1,41 @@
+.heading {
+    font-size: 1.8rem;
+    margin: 8px 0 16px 0;
+}
+
+.links ul {
+    flex-direction: column;
+}
+
+.item {
+    margin: 4px 0;
+}
+
+.link {
+    padding: 6px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.activeLink {
+    background-color: var(--primarySecond);
+}
+
+.icon {
+    color: var(--primaryFirst);
+    width: 20px;
+    margin-right: 8px;
+}
+
+.link span {
+    margin: 0 4px 0 8px;
+}
+
+@media screen and (max-width:768px) {
+    .sidebar {
+        padding: 8px 16px;
+        border-radius: 8px;
+        background-color: #f3f3f3;
+    }
+}

@@ -1,0 +1,48 @@
+.paymentMethods {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+ 
+.paymentMethods li {
+    display: flex;
+    align-items: center;
+    flex: 0 1 30%;
+    padding: 8px 16px;
+    margin: 8px;
+    border-radius: 8px;
+    background-color: var(--shade5);
+}
+
+.paymentMethods img {
+    width: 40px;
+    margin-right: 16px;
+}
+
+.paymentMethods span {
+    text-transform: capitalize;
+}
+
+
+.paymentCards { 
+    margin-bottom: 16px;
+}
+
+.card {
+    width: 60%;
+}
+
+@media screen and (max-width:768px) {
+    .paymentMethods li {
+        flex: 0 1 45%;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
+@media screen and (max-width:450px) {
+    .paymentMethods li {
+        flex: 1 1 100%;
+    }
+}

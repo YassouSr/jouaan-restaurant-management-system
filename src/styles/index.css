@@ -1,4 +1,4 @@
-/* This file contains general styles for the FULL project */
+/* This file contains global styles for the FULL project */
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap');
 
@@ -22,7 +22,9 @@ ul {
 }
 
 a {
+    color: unset;
     text-decoration: none;
+    text-transform: capitalize;
 }
 
 /******* Global variables *******/
@@ -36,10 +38,16 @@ a {
     --shade25: #98A391;
     --shade5: #e6e6e6;
     --error: #FF4841;
-    --success: #2EF24B;
+    --success: #10ac84;
     --warning: #F77B00;
     --info: #3867D6;
-    --neutral: #fff
+    --neutral: #fff;
+
+    --navbarHeight: 54px;
+    --navbarPadding: 4px 0;
+    --viewportHeight: calc(100vh - (var(--navbarHeight) + var(--navbarPadding)));
+
+    --boxShadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 
@@ -101,7 +109,8 @@ h5 {
         font-size: 1.2rem;
     }
 }
-@media screen and (max-width: 500px) {
+
+@media screen and (max-width: 400px) {
     /* Scale: 1.125 */
     h1 {
         font-size: 1.802rem;
@@ -114,18 +123,4 @@ h5 {
       h4 {font-size: 1.266rem;}
       
       h5 {font-size: 1.125rem;}
-}
-@media screen and (max-width: 300px) {
-    /* Scale: 1.067 */
-    h1 {
-        font-size: 1.383rem;
-      }
-      
-      h2 {font-size: 1.296rem;}
-      
-      h3 {font-size: 1.215rem;}
-      
-      h4 {font-size: 1.138rem;}
-      
-      h5 {font-size: 1.067rem;}
-}
+} 

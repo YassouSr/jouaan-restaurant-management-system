@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import styles from "../../styles/form.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "../../styles/components/shared/form.module.css";
 import Button from "../shared/Button";
 
 const LoginForm = () => {
+  const navigate = useNavigate()
   return (
     <div className={styles.pageForm}>
       <div className={styles.container}>
@@ -12,8 +13,8 @@ const LoginForm = () => {
         </div>
         <div className={styles.form}>
           <form action="" method="post">
-            <input type="email" name="" id="" placeholder="Email" />
-            <input type="password" name="" id="" placeholder="Password" />
+            <input type="email" name="email" id="email" placeholder="Email" />
+            <input type="password" name="password" id="password" placeholder="Password" />
           </form>
         </div>
         <div className={styles.buttons}>
@@ -21,7 +22,7 @@ const LoginForm = () => {
             text="Sign In"
             color="var(--primaryFirst)"
             bgColor="var(--primarySecond)"
-            to='/dashboard'
+            onClick={() => {navigate('/customer/menu')}}
           />
           <div>
             <Link to='/'>Forget password ?</Link>

@@ -1,7 +1,8 @@
-import styles from '../../styles/location.module.css'
+import styles from '../../styles/components/landing/location.module.css'
 import Container from "../shared/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { ADDRESS, WORKING_DAYS, WORKING_HOURS } from '../../assets/data/dummy';
 
 const Location = () => {
   return ( 
@@ -15,7 +16,7 @@ const Location = () => {
             <div className={styles.locationContent}>
               <h2>Our location</h2>
               <address>
-                Calle Remigio Sebastià, 17, 03002 Alacant, Alicante, Spain
+                {ADDRESS}
               </address>
             </div>
           </div>
@@ -26,8 +27,8 @@ const Location = () => {
             </div>
             <div className={styles.locationContent}>
               <h2>Working hours</h2>
-              <p>Sunday to Thursday</p>
-              <p>9:00 AM - 5:00 PM</p>
+              <p>{WORKING_DAYS[0]} to {WORKING_DAYS[1]}</p>
+              <p>{WORKING_HOURS[0]} - {WORKING_HOURS[1]}</p>
             </div>
           </div>
         </div>
