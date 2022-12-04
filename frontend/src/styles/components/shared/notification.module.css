@@ -1,0 +1,23 @@
+.notification {
+    padding: 10px 0;
+    color: var(--neutral);
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+}
+
+.message p {
+    margin: 0 16px;
+}
+
+.icon:hover {
+    cursor: pointer;
+}

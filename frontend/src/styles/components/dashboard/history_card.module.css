@@ -1,0 +1,55 @@
+.order {
+    background-color: var(--neutral);
+    border-radius: 8px;
+    padding: 8px 16px;
+    box-shadow: rgb(0 0 0 / 2%) 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px;
+}
+
+.order p {
+    margin: 0;
+}
+
+.title {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.dateTime {
+    color: var(--info);
+}
+
+.plates {
+    display: flex;
+    margin: 8px 0;
+}
+
+.plates p {
+    width: 60px;
+}
+
+.plates div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.plates span {
+    background-color: var(--shade5);
+    padding: 2px 6px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    border-radius: 8px;
+    text-transform: capitalize;
+    font-size: .9rem;
+}
+
+.price {
+    color: var(--secondary);
+    font-weight: bold;
+    text-align: right;
+}
+
+@media screen and (max-width:768px) {
+    .plates {
+        flex-direction: column;
+    }
+}

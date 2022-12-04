@@ -1,0 +1,40 @@
+.categories {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    flex: 0 1 30%;
+}
+
+.categoryBtn {
+    padding: 16px; 
+    margin: 8px;
+    border-radius: 8px;
+    background-color: var(--shade5);
+    border: none;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.activeLink,
+.categoryBtn:hover {
+    color: var(--neutral);
+    background-color: var(--secondary);
+}
+
+.plateCards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2em;
+}
+
+@media screen and (max-width:768px) {
+    .plateCards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width:400px) {
+    .plateCards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

@@ -1,0 +1,64 @@
+.location {
+    margin: 50px 0;
+    padding: 50px 0;
+    background-color: var(--primaryFirst);
+    color: var(--neutral);
+}
+ 
+.bloc {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.address,
+.workTime {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.iconContainer {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    font-size: 72px;
+    width: 64px;
+    color: var(--primarySecond)
+}
+
+.locationContent {
+    padding: 0 24px;
+}
+
+.locationContent h2 {
+    margin-bottom: .5rem;
+}
+
+.locationContent p {
+    margin-bottom: 0;
+}
+
+.locationContent address {
+    font-style: normal;
+}
+
+@media screen and (max-width: 768px) {
+    .bloc {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .address {
+        margin-bottom: 24px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .icon {
+        font-size: 58px;
+        width: 48px;
+    }
+}
