@@ -4,7 +4,7 @@ import sharedStyles from "../../styles/pages/pages.module.css";
 
 const Support = () => {
   return (
-    <div>
+    <React.Fragment>
       <h2 className={sharedStyles.heading}>Customer Support</h2>
 
       <p>How can we help you ?</p>
@@ -23,7 +23,7 @@ const Support = () => {
           type="submit"
         />
       </form>
-    </div>
+    </React.Fragment>
   );
 };
 

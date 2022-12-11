@@ -26,7 +26,7 @@ const Payment = () => {
   }, []);
 
   return ( 
-    <div>
+    <React.Fragment>
       <h2 className={sharedStyles.heading}>Payment</h2>
 
       <h3 className={sharedStyles.subHeading}>Supported methods</h3>
@@ -65,7 +65,7 @@ const Payment = () => {
         color="var(--shade100)"
         bgColor="var(--success)"
       />
-    </div>
+    </React.Fragment>
   );
 };
 

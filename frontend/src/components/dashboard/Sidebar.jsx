@@ -1,12 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../../styles/components/dashboard/sidebar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {SIDEBAR_LINKS} from '../../assets/data/dummy'
 import { NavLink } from "react-router-dom";
+import axiosInstance from "../../axios";
  
 const Sidebar = (props) => {
-  const [isActive, setIsActive] = useState("menu");
+  const navigate = useNavigate();
+
+  const handleLogout = (name) => {
+    console.log(name)
+    if (name === "logout") {
+      const response = axiosInstance.post('customer/logout/', {
+        refresh_token: localStorage.getItem('refresh_token'),
+      });
+      console.log(response)
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      axiosInstance.defaults.headers['Authorization'] = null;
+      console.log(axiosInstance)
+      navigate('/login/');
+    }
+	};
 
   return ( 
     <div className={styles.sidebar}>
@@ -18,9 +34,7 @@ const Sidebar = (props) => {
             return (
               <li key={index} className={styles.item}>
                 <NavLink
-                  onClick={(isActive) => {
-
-                  }}
+                  onClick={(isActive) => {handleLogout(link.name)}}
                   to={link.route}
                   className={({ isActive }) => (isActive ? `${styles.link} ${styles.activeLink}` : styles.link)}
                 >

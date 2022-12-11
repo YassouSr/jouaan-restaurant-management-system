@@ -12,7 +12,7 @@ const DashboardLayout = (props) => {
   const { openSidebar } = useContext(MainContext);
 
   return (
-    <div>
+    <React.Fragment>
       <Navbar username="Yasmine Souakri" type={props.type} />
 
       <main className={styles.main}>
@@ -32,7 +32,7 @@ const DashboardLayout = (props) => {
       </main>
 
       <Footer />
-    </div>
+    </React.Fragment>
   );
 };
 

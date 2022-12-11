@@ -5,11 +5,11 @@ import Footer from "../components/shared/Footer";
 
 const LandingLayout = () => {
   return (
-    <div>
+    <React.Fragment>
       <Navbar />
       <Outlet />
       <Footer />
-    </div>
+    </React.Fragment>
   );
 };
 

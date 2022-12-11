@@ -10,7 +10,7 @@ const Profile = () => {
   const [value, setValue] = useState("undefined");
 
   return ( 
-    <div>
+    <React.Fragment>
       <h2 className={sharedStyles.heading}>Profile</h2>
 
       <form action="post">
@@ -95,7 +95,7 @@ const Profile = () => {
           />
         </div>
       </form>
-    </div>
+    </React.Fragment>
   );
 };
 

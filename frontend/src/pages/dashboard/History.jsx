@@ -26,7 +26,7 @@ const History = () => {
   }, []);
 
   return (
-    <div>
+    <React.Fragment>
       <h2 className={sharedStyles.heading}>History</h2>
 
       <div className={styles.searchBar}>
@@ -58,7 +58,7 @@ const History = () => {
           );
         })}
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

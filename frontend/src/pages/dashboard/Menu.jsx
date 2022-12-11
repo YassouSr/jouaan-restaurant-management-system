@@ -35,7 +35,7 @@ const Menu = () => {
   }, []);
 
   return ( 
-    <div className={styles.menu}>
+    <React.Fragment>
       <h2 className={sharedStyles.heading}>Menu</h2>
 
       <h3 className={sharedStyles.subHeading}>Category</h3>
@@ -83,7 +83,7 @@ const Menu = () => {
           );
         })}
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

@@ -3,7 +3,8 @@ from . import models
 
 # Register your models here.
 
-admin.site.register(models.Admin)
+admin.site.register(models.User)
+admin.site.register(models.RestaurantAdmin)
 admin.site.register(models.Customer)
 admin.site.register(models.Chef)
 admin.site.register(models.Courier)

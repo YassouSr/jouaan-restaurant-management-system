@@ -6,12 +6,12 @@ import Menu from "../components/landing/Menu";
 
 const LandingPage = () => {
   return (
-    <div>
+    <React.Fragment>
       <HeroSection />
       <Menu />
       <Location />
       <Delivery />
-    </div>
+    </React.Fragment>
   );
 };
 

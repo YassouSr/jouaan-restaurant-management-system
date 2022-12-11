@@ -6,11 +6,11 @@ import sharedStyles from "../../styles/pages/pages.module.css";
 const Language = () => {
   const { defaultLanguage } = useContext(MainContext);
   return (
-    <div>
+    <React.Fragment>
       <h2 className={sharedStyles.heading}>Language</h2>
 
       <p>Choose you're default language : {defaultLanguage}</p>
-    </div>
+    </React.Fragment>
   );
 };
 

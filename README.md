@@ -12,12 +12,12 @@ npm i swiper
 npm i react-router-dom
 npm i react-router-hash-link
 npm i react-phone-input-2
+npm install jwt-decode
+npm install axios
 
 Dependencies that i've installed with django :
 
-python -m venv env
-.\env\Scripts\activate
 pip install django
-django-admin startproject config
-python manage.py migrate
-python manage.py runserver
+pip install djangorestframework
+pip install djangorestframework-simplejwt
+pip install django-cors-headers

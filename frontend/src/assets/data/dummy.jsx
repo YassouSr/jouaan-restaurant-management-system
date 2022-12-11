@@ -88,7 +88,7 @@ export const SIDEBAR_LINKS = {
       {
         name: "logout",
         icon: faRightFromBracket,
-        route: "/logout",
+        route: "/"
       },
     ],
   },

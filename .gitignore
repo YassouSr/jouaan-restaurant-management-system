@@ -2,8 +2,11 @@ node_modules/
 __pycache__/
 env/
 migrations/
-node_modules/**
-__pycache__/**
-env/**
-migrations/**
+
+**/node_modules/**
+**/__pycache__/**
+**/env/**
+**/migrations/**
+
+*.pyc
 db.sqlite3

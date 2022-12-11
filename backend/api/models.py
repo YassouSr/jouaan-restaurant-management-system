@@ -1,38 +1,59 @@
 from django.db import models
 from . import patterns
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from .managers import CustomUserManager
+
+# Default authentication User model
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
+    last_name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50)
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+    objects = CustomUserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name']
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+    
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # Simplest possible answer: All admins are staff
+        return self.is_admin
+
+class RestaurantAdmin(User):
+    email_restaurant = models.EmailField(unique=True)
+    address_restaurant = models.CharField(max_length=20)
+    phone_number_restaurant = models.CharField(max_length=10)
 
 class Payment(models.Model):
     name = models.CharField(unique=True, max_length=20)
 
     def __str__(self):
-        return self.name
-    
-class User(models.Model):
-    username = models.CharField(unique=True, max_length=10)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=10)
-    phone_number = models.CharField(max_length=10)
-
-    class Meta:
-        abstract = True
-    
-    def __str__(self):
-        return self.username
-
-class Admin(User):
-    email_restaurant = models.EmailField(unique=True)
-    address_restaurant = models.CharField(max_length=20)
-    phone_number_restaurant = models.CharField(max_length=10)
+        return self.name 
 
 class Customer(User):
-    address = models.CharField(max_length=20)
+    address = models.CharField(max_length=20, null=True)
     payment_methods = models.ManyToManyField(Payment)
 
 class Chef(User):
     pass
 
 class Courier(User):
-    address = models.CharField(max_length=20)
+    address = models.CharField(max_length=20, null=True)
 
 class Menu(patterns.SingletonModel):
     version = models.IntegerField()
@@ -78,5 +99,5 @@ class Feedback(models.Model):
     customer = models.OneToOneField(Customer, null=True, on_delete=models.SET_NULL) 
 
     def __str__(self):
-        return self.customer
+        return '{}'.format(self.customer)
     
