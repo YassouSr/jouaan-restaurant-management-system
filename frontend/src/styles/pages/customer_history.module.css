@@ -1,0 +1,37 @@
+.searchBar {
+  position: relative;
+}
+
+.searchIcon {
+  align-items: center;
+  background-color: var(--shade5);
+  border-bottom: 1px solid var(--primaryFirst);
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid var(--primaryFirst);
+  border-top: 1px solid var(--primaryFirst);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  width: 35px;
+}
+
+.searchBar input {
+  border: 1px solid var(--primaryFirst);
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 16px;
+  margin-top: 8px;
+  outline: none;
+  padding: 10px 40px 10px 1;
+  width: 100%;
+}
+
+.historyOrders {
+  margin-top: 32px;
+}
+
+.historyOrders > div {
+  margin: 16px 0;
+}

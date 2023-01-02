@@ -1,8 +1,9 @@
-import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "../../styles/components/shared/form.module.css";
+
 import Button from "../shared/Button";
-import axiosInstance from "../../axios.js";
+import { axiosInstance } from "../../axios.js";
+import styles from "../../styles/components/shared/form.module.css";
+import { useState } from "react";
 
 const SignupForm = () => {
   const navigate = useNavigate();
@@ -24,20 +25,20 @@ const SignupForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
 
     axiosInstance
       .post(`customer/signup/`, {
         email: formData.email,
-        first_name: formData.first_name,
+        first_name: formData.first_name, 
         last_name: formData.last_name,
         password: formData.password,
       })
       .then((res) => {
         navigate("/login");
-        console.log(res);
-        console.log(res.data);
-      });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   };
 
   return (

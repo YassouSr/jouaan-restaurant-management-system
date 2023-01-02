@@ -1,8 +1,9 @@
+import Animation from "../../assets/imgs/delivery_animation.gif";
 import Button from "../shared/Button";
 import Container from "../shared/Container";
 import styles from "../../styles/components/landing/delivery.module.css";
-import Animation from "../../assets/imgs/delivery_animation.gif";
 import { useNavigate } from "react-router-dom";
+
 const Delivery = () => {
   const navigate = useNavigate()
   return (

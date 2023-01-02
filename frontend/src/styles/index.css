@@ -1,126 +1,133 @@
 /* This file contains global styles for the FULL project */
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap");
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: 'Nunito', Arial, sans-serif;
-    font-size: 16px;
-    /* base font size (default) */
-    line-height: 1.75;
-    color: var(--primaryFirst);
+  color: var(--primaryFirst);
+  font-family: "Nunito", Arial, sans-serif;
+  font-size: 16px;
+  /* base font size (default) */
+  line-height: 1.75;
 }
 
 ul {
-    display: flex;
-    list-style-type: none;
+  display: flex;
+  list-style-type: none;
 }
 
 a {
-    color: unset;
-    text-decoration: none;
-    text-transform: capitalize;
+  color: unset;
+  text-decoration: none;
+  text-transform: capitalize;
 }
 
 /******* Global variables *******/
 
 :root {
-    --primaryFirst: #314722;
-    --primarySecond: #F2B705;
-    --secondary: #820303;
-    --shade100: #141C0E;
-    --shade50: #536c41;
-    --shade25: #98A391;
-    --shade5: #e6e6e6;
-    --error: #FF4841;
-    --success: #10ac84;
-    --warning: #F77B00;
-    --info: #3867D6;
-    --neutral: #fff;
+  --primaryFirst: #314722;
+  --primarySecond: #f2b705;
+  --secondary: #820303;
+  --shade100: #141c0e;
+  --shade50: #536c41;
+  --shade25: #98a391;
+  --shade5: #e6e6e6;
+  --error: #ff4841;
+  --success: #10ac84;
+  --warning: #f77b00;
+  --info: #3867d6;
+  --neutral: #fff;
 
-    --navbarHeight: 54px;
-    --navbarPadding: 4px 0;
-    --viewportHeight: calc(100vh - (var(--navbarHeight) + var(--navbarPadding)));
+  --navbarHeight: 54px;
+  --navbarPadding: 4px 0;
+  --viewportHeight: calc(100vh - (var(--navbarHeight) + var(--navbarPadding)));
 
-    --boxShadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  --boxShadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
 }
-
 
 /******* Typography / Scale: 1.250 *******/
 
-p {
+/* p {
     margin-bottom: 1rem;
-}
+} */
 
 h1,
 h2,
 h3,
 h4,
 h5 {
-    margin-bottom: 1rem;
-    line-height: 1.5;
-    text-transform: capitalize;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
 }
 
 h1 {
-    font-size: 3.052rem;
+  font-size: 3.052rem;
 }
 
 h2 {
-    font-size: 2.441rem;
+  font-size: 2.441rem;
 }
 
 h3 {
-    font-size: 1.953rem;
+  font-size: 1.953rem;
 }
 
 h4 {
-    font-size: 1.563rem;
+  font-size: 1.563rem;
 }
 
 h5 {
-    font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 
 @media screen and (max-width: 1024px) {
-    /* Scale: 1.2 */
-    h1 {
-        font-size: 2.488rem;
-    }
+  /* Scale: 1.2 */
+  h1 {
+    font-size: 2.488rem;
+  }
 
-    h2 {
-        font-size: 2.074rem;
-    }
+  h2 {
+    font-size: 2.074rem;
+  }
 
-    h3 {
-        font-size: 1.728rem;
-    }
+  h3 {
+    font-size: 1.728rem;
+  }
 
-    h4 {
-        font-size: 1.44rem;
-    }
+  h4 {
+    font-size: 1.44rem;
+  }
 
-    h5 {
-        font-size: 1.2rem;
-    }
+  h5 {
+    font-size: 1.2rem;
+  }
 }
 
 @media screen and (max-width: 400px) {
-    /* Scale: 1.125 */
-    h1 {
-        font-size: 1.802rem;
-      }
-      
-      h2 {font-size: 1.602rem;}
-      
-      h3 {font-size: 1.424rem;}
-      
-      h4 {font-size: 1.266rem;}
-      
-      h5 {font-size: 1.125rem;}
-} 
+  /* Scale: 1.125 */
+  h1 {
+    font-size: 1.802rem;
+  }
+
+  h2 {
+    font-size: 1.602rem;
+  }
+
+  h3 {
+    font-size: 1.424rem;
+  }
+
+  h4 {
+    font-size: 1.266rem;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+  }
+}

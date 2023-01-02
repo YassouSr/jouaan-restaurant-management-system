@@ -1,9 +1,9 @@
 .button {
-    padding: 8px 16px;
     border: none;
     border-radius: 8px;
-    width: 105px;
     cursor: pointer;
+    padding: 8px 16px;
+    width: 105px;
 }
 
 .button:hover {

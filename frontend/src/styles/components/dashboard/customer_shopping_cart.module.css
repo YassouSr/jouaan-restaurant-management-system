@@ -1,0 +1,27 @@
+.shoppingCart {
+    position: relative;
+}
+
+.shoppingCartBtn {
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+}  
+
+.shoppingCartCounter {
+    align-items: center;
+    aspect-ratio: 1/1;
+    background-color: var(--primarySecond);
+    border-radius: 50%;
+    color: var(--secondary);
+    display: flex;
+    height: 1.2rem;
+    justify-content: center;
+}
+
+.shoppingCartIcon {
+    font-size: 22px;
+    padding: 4px; 
+}

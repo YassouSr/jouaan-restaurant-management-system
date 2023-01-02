@@ -1,11 +1,14 @@
-import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axiosInstance from "../../axios";
-import styles from "../../styles/components/shared/form.module.css";
+import { useContext, useState } from "react";
+
 import Button from "../shared/Button";
+import { MainContext } from "../../contexts/MainContext";
+import { axiosInstance } from "../../axios";
+import styles from "../../styles/components/shared/form.module.css";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const mainContext = useContext(MainContext)
   const initialFormData = Object.freeze({
     email: "",
     password: "",
@@ -22,22 +25,36 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
 
     axiosInstance
-      .post(`token/`, {
-        email: formData.email,
+      .post(`customer/signin/`, {
+        email: formData.email, 
         password: formData.password,
       })
       .then((res) => {
+        console.log("login : ")
+        console.log(res)
 				localStorage.setItem('access_token', res.data.access);
 				localStorage.setItem('refresh_token', res.data.refresh);
-				axiosInstance.defaults.headers['Authorization'] =
-					'JWT ' + localStorage.getItem('access_token');
+				axiosInstance.defaults.headers['Authorization'] = 'JWT ' + localStorage.getItem('access_token');
+        mainContext.setLastName(res.data.user.last_name)
+        mainContext.setFirstName(res.data.user.first_name)
+        mainContext.setUserId(res.data.user.id)
+        mainContext.setUserEmail(res.data.user.email)
+        mainContext.setPhoneNumber(res.data.user.phone_number)
+        mainContext.setUserAddressURL(res.data.user.address_url)
+        
+        if (res.data.user.address_map !== undefined) {
+          mainContext.setUserAddressMap(res.data.user.address_map)
+        } else {
+          mainContext.setUserAddressMap({"longitude": null, "latitude":null})
+        }
+        
 				navigate('/customer/menu/');
-				console.log(res);
-				console.log(res.data);
-			});
+			})
+      .catch((error) => {
+        console.log(error);
+      })
   };
 
   return (

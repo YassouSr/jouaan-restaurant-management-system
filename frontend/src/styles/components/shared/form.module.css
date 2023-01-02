@@ -1,37 +1,33 @@
 .pageForm {
-    min-height: var(--viewportHeight);
-    display: flex;
     align-items: center;
+    display: flex;
     flex-direction: column;
     justify-content: center;
+    min-height: var(--viewportHeight);
 }
 
 .container {
     background-color: var(--neutral);
-    padding: 24px;
     border-radius: 8px;
     box-shadow: var(--boxShadow);
+    padding: 24px;
     width: 350px;
 }
 
-.form {
-    margin: 24px 0;
-}
-
 .form input {
-    display: block;
-    padding: 8px;
+    background-color: var(--shade5);
     border: 1px solid transparent;
     border-radius: 8px;
+    display: block;
     margin-bottom: 16px;
-    width: 100%;
-    background-color: var(--shade5);
     outline: none;
+    padding: 8px;
+    width: 100%;
 }
 
 .buttons {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: space-between;
 }
 

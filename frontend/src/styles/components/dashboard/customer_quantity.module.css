@@ -1,0 +1,23 @@
+.quantity {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 72px;
+}
+
+.iconContainer {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+}
+
+.icon {
+    border: 2px solid var(--primarySecond);
+    border-radius: 4px;
+}
+
+.quantity span {
+    margin: 0 2px;
+    padding: 0 4px;
+    text-align: center;
+}

@@ -1,9 +1,10 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import Button from "./Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from '../../styles/components/shared/plate_card.module.css'
-import Button from "./Button"; 
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import styles from '../../styles/components/shared/plate_card.module.css';
 
 const PlateCard = (props) => {
+  
   return (
     <div className={props.class} key={props.myKey}>
       <div className={styles.imageContainer}>

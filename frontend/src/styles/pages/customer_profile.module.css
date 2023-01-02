@@ -1,0 +1,68 @@
+.row {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.col {
+  width: 50%;
+}
+
+.col:nth-child(1) {
+  padding-right: 16px;
+}
+
+.col:nth-child(2) {
+  padding-left: 16px;
+}
+
+.col input {
+  display: block;
+  width: 100%;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.input {
+  border: 1px solid var(--primaryFirst);
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 16px;
+  margin-top: 8px;
+  outline: none;
+  padding: 10px;
+  width: 100%;
+}
+
+.buttons {
+  margin-top: 24px;
+}
+
+.btnLink {
+  background: none;
+  border: none;
+  color: var(--info);
+  cursor: pointer;
+}
+
+.btnLink:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .col {
+    width: 100%;
+  }
+
+  .col:nth-child(1),
+  .col:nth-child(2) {
+    padding: 0;
+  }
+}

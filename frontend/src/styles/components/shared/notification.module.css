@@ -1,17 +1,17 @@
 .notification {
-    padding: 10px 0;
     color: var(--neutral);
+    padding: 10px 0;
 }
 
 .content {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: space-between;
 }
 
 .message {
-    display: flex;
     align-items: center;
+    display: flex;
 }
 
 .message p {

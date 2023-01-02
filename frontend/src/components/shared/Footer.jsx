@@ -1,11 +1,11 @@
+import { EMAIL, SHORT_ADDRESS, TEL } from "../../assets/data";
+
 import Container from "../shared/Container";
-import styles from "../../styles/components/shared/footer.module.css";
-import Logo from "../../assets/imgs/logo_bg_dark.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { Link } from "react-router-dom";
-import { SHORT_ADDRESS, EMAIL, TEL } from "../../assets/data/dummy";
+import Logo from "../../assets/imgs/logo_bg_dark.svg";
 import { NavLink } from "react-router-dom";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import styles from "../../styles/components/shared/footer.module.css";
 
 const Footer = () => {
   return (
@@ -19,10 +19,10 @@ const Footer = () => {
                 <NavLink to="/">home</NavLink>
               </li>
               <li className={styles.listElement}>
-                <NavLink to="/">how it works</NavLink>
+                <NavLink to="/how-it-works">how it works</NavLink>
               </li>
               <li className={styles.listElement}>
-                <NavLink to="/">customer support</NavLink>
+                <NavLink to="/customer/support">customer support</NavLink>
               </li>
               <li className={styles.listElement}>
                 <NavLink to="/">languages</NavLink>

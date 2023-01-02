@@ -1,10 +1,12 @@
-import Pizza from "../../assets/imgs/pizza_slider_square_1080.jpg";
-import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Swiper, SwiperSlide } from "swiper/react";
-import PlateCard from "./PlateCard";
 import "../../styles/plugin/swiper_slider.css";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import { Navigation } from "swiper";
+import Pizza from "../../assets/imgs/pizza_slider_square_1080.jpg";
+import PlateCard from "./PlateCard";
 import { useNavigate } from "react-router-dom";
 
 const Slider = (props) => {

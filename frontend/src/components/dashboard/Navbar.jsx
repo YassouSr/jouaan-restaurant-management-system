@@ -1,32 +1,40 @@
-import styles from "../../styles/components/dashboard/navbar.module.css";
-import sharedStyles from "../../styles/components/landing/navbar.module.css";
+import { useContext, useEffect, useState } from "react";
 
-import DefaultLogo from "../../assets/imgs/default_logo.svg";
-import { Link } from "react-router-dom";
 import Container from "../shared/Container";
+import DefaultLogo from "../../assets/imgs/default_logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { useEffect, useState } from "react";
-import { useContext } from "react";
-import { ContextProvider, MainContext } from "../../contexts/MainContext";
-import OrdersCard from "../dashboard/OrdersCard"
+import { MainContext } from "../../contexts/MainContext";
 import { NavLink } from "react-router-dom";
- 
-const Navbar = (props) => { 
-  const { openSidebar, setOpenSidebar, setScreenSize, screenSize } = useContext(MainContext);
+import ShoppingCart from "./customer/ShoppingCart";
+import { ShoppingCartContext } from "../../contexts/ShoppingCartContext";
+import ShoppingCartModel from "./customer/ShoppingCartModel";
+import sharedStyles from "../../styles/components/landing/navbar.module.css";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import styles from "../../styles/components/dashboard/navbar.module.css";
+
+const Navbar = (props) => {
+  const {
+    openSidebar,
+    setOpenSidebar,
+    setScreenSize,
+    screenSize,
+    lastName,
+    firstName,
+  } = useContext(MainContext);
+  const [isHovered, setIsHovered] = useState(false);
+  const cartContext = useContext(ShoppingCartContext)
 
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     handleResize();
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    // @ts-ignore
     if (screenSize <= 768) {
       setOpenSidebar(false);
     } else {
@@ -41,7 +49,11 @@ const Navbar = (props) => {
       <Container>
         <div className={sharedStyles.navbar}>
           <div className={styles.navItem}>
-            <div className={`${sharedStyles.humbugger} ${styles.navBtn}`} onClick={handleOpenSidebar}>
+            <div
+              className={sharedStyles.humbugger}
+              style={{marginRight: "16px"}}
+              onClick={handleOpenSidebar}
+            >
               <FontAwesomeIcon
                 className={sharedStyles.icon__1}
                 icon={solid("bars")}
@@ -56,10 +68,30 @@ const Navbar = (props) => {
           </div>
 
           <div className={styles.navItem}>
-            <span className={styles.navType}>{props.type} dashboard</span>
-            <OrdersCard />
+            <div className={styles.navType}>
+              Welcome {firstName} {lastName}
+            </div>
+            <button
+              className={styles.navBtn}
+              onMouseEnter={() => {
+                setIsHovered(true);
+              }}
+              onMouseLeave={() => {
+                setIsHovered(false);
+              }}
+              style={{marginLeft: "16px"}}
+            >
+              <FontAwesomeIcon
+                className={styles.navIcon}
+                icon={solid("language")}
+                color={isHovered ? "var(--secondary)" : "var(--primaryFirst)"}
+              />
+            </button>
+            <ShoppingCart style={{marginLeft: "16px"}} />
           </div>
         </div>
+        
+        {cartContext.shoppingCartModelState && <ShoppingCartModel />}
       </Container>
     </nav>
   );

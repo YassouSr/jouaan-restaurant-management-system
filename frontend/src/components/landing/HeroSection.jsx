@@ -1,9 +1,9 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Egg from "../../assets/imgs/egg_hero.jpg";
-import Pizza from "../../assets/imgs/pizza_hero.jpg";
 import Button from "../shared/Button";
-import styles from '../../styles/components/landing/hero_section.module.css'
+import Egg from "../../assets/imgs/egg_hero.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Pizza from "../../assets/imgs/pizza_hero.jpg";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import styles from '../../styles/components/landing/hero_section.module.css';
 import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => { 

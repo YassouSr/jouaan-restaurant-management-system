@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import { Outlet } from "react-router-dom";
-import Navbar from "../components/dashboard/Navbar";
-import Sidebar from "../components/dashboard/Sidebar";
+
 import Container from "../components/shared/Container";
 import Footer from "../components/shared/Footer";
-import Notification from "../components/shared/Notification";
 import { MainContext } from "../contexts/MainContext";
-import styles from "../styles/layouts/dashboard_layout.module.css";
+import Navbar from "../components/dashboard/Navbar";
+import Notification from "../components/shared/Notification";
+import { Outlet } from "react-router-dom";
+import Sidebar from "../components/dashboard/Sidebar";
+import styles from "../styles/dashboard_layout.module.css";
 
 const DashboardLayout = (props) => {
   const { openSidebar } = useContext(MainContext);

@@ -1,0 +1,36 @@
+.main {
+  padding-bottom: 50px;
+  padding-top: 62px;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  padding-top: 16px;
+  position: relative;
+}
+
+.aside {
+  margin-right: 16px;
+  width: 200px;
+}
+
+.article {
+  margin-left: 16px;
+  width: calc(100% - 200px);
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .aside,
+  .article {
+    width: 100%;
+  }
+
+  .article {
+    margin-left: 0;
+  }
+}

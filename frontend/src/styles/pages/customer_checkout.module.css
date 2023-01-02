@@ -1,0 +1,123 @@
+.checkout {
+  counter-reset: step-counter;
+}
+
+.title {
+  align-items: center;
+  background-color: #f1f2f6;
+  border-bottom: 1px solid var(--shade25);
+  border-top: 1px solid var(--shade25);
+  display: flex;
+  padding: 4px 2px;
+}
+
+.title::before {
+  content: counter(step-counter);
+  counter-increment: step-counter;
+  display: inline;
+  font-size: 1.5rem;
+  margin-right: 22px;
+}
+
+.title h3 {
+  display: inline;
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.focus {
+  background: var(--neutral);
+  border: none;
+  color: var(--primarySecond);
+}
+
+.collapse {
+  padding: 12px 4px;
+}
+
+.collapse a {
+  color: var(--info);
+}
+
+.collapse a:hover {
+  text-decoration: underline;
+}
+
+.priceSection {
+  border-top: 1px solid var(--shade5);
+  margin-top: 16px;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.priceSection > div {
+  margin-left: auto;
+  width: 50%;
+}
+
+.priceSection p {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.priceSection p:last-child {
+  color: var(--secondary);
+  font-weight: bold;
+}
+
+.formItem {
+  background-color: var(--shade5);
+  margin-bottom: 16px;
+  padding: 12px 0;
+}
+
+.formItemContainer {
+  align-items: center;
+  display: flex;
+  height: 64px;
+  margin: 0 12px;
+  padding: 0 16px;
+}
+
+.formRadio {
+  /* remove standard background appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* background-color only for content */
+  background-clip: content-box;
+  background-color: var(--neutral);
+  border: 2px solid var(--shade25);
+  border-radius: 50%;
+  cursor: pointer;
+  /* create custom radiobutton appearance */
+  display: inline-block;
+  height: 22px;
+  margin: 8px 16px 8px 8px;
+  padding: 3px;
+  width: 22px;
+}
+
+.formRadio:checked {
+  background-color: var(--primarySecond);
+  border: 2px solid var(--primarySecond);
+}
+
+.formLabel {
+  align-items: center;
+  display: flex;
+}
+
+.icon {
+  margin-right: 16px;
+  width: 40px;
+}
+
+.btn {
+  margin: 8px 0;
+}
+
+.btn button {
+  width: 100%;
+}

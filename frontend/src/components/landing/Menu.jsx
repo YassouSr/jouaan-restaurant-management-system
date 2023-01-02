@@ -1,9 +1,9 @@
-import Container from '../shared/Container'
-import Slider from '../shared/Slider'
-import styles from '../../styles/components/landing/menu.module.css'
-import {PLATES} from '../../assets/data/dummy'
+import Container from '../shared/Container';
+import { PLATES } from '../../assets/data';
+import Slider from '../shared/Slider';
+import styles from '../../styles/components/landing/menu.module.css';
 
-const Menu = () => {
+const Menu = () => { 
   return (
     <div id='menu' className={styles.menu}>
       <Container>

@@ -12,10 +12,10 @@
 }
 
 .link {
-    padding: 6px;
+    align-items: center;
     border-radius: 8px;
     display: flex;
-    align-items: center;
+    padding: 6px;
 }
 
 .activeLink {
@@ -24,8 +24,8 @@
 
 .icon {
     color: var(--primaryFirst);
-    width: 20px;
     margin-right: 8px;
+    width: 20px;
 }
 
 .link span {
@@ -34,8 +34,8 @@
 
 @media screen and (max-width:768px) {
     .sidebar {
-        padding: 8px 16px;
-        border-radius: 8px;
         background-color: #f3f3f3;
+        border-radius: 8px;
+        padding: 8px 16px;
     }
 }

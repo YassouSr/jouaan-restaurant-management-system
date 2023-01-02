@@ -12,8 +12,10 @@ npm i swiper
 npm i react-router-dom
 npm i react-router-hash-link
 npm i react-phone-input-2
-npm install jwt-decode
 npm install axios
+npm install --save sweetalert2 sweetalert2-react-content
+npm i --save-dev @types/node // delete it
+npm install mapbox-gl
 
 Dependencies that i've installed with django :
 
@@ -21,3 +23,4 @@ pip install django
 pip install djangorestframework
 pip install djangorestframework-simplejwt
 pip install django-cors-headers
+pip install django-environ

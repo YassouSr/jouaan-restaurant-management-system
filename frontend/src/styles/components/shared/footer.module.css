@@ -1,12 +1,12 @@
 .footer {
-    padding-top: 50px;
     background-color: var(--primaryFirst);
+    padding-top: 50px;
 }
 
 .content {
+    border-bottom: 1px solid var(--shade25);
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid var(--shade25);
     padding-bottom: 50px;
 }
 
@@ -34,9 +34,9 @@
 }
 
 .logo {
-    width: 20%;
-    display: flex;
     align-items: center;
+    display: flex;
+    width: 20%;
 }
 
 .logo img {
@@ -44,30 +44,32 @@
 }
 
 .contactElement {
+    align-items: center;
     display: flex;
     flex-wrap: nowrap;
-    align-items: center;
     margin-bottom: 4px;
 }
 
 .footerParagraph {
-    margin-left: 4px;
     margin-bottom: 0;
+    margin-left: 4px;
 }
 
 .iconContainer {
+    align-items: center;
+    display: flex;
     width: 40px;
 }
 
 .icon {
-    font-size: 25px;
     color: var(--primarySecond);
+    font-size: 22px;
 }
 
 .footerBottom {
+    align-content: center;
     display: flex;
     justify-content: space-between;
-    align-content: center;
     padding: 8px 0;
 }
 
@@ -81,9 +83,9 @@
     }
 
     .logo {
-        order: 3;
         flex-basis: 100%;
         justify-content: center;
+        order: 3;
     }
 
     .contact {
@@ -95,8 +97,8 @@
     }
 
     .footerBottom {
-        flex-direction: column;
         align-items: center;
+        flex-direction: column;
     }
 
     .footerBottom div {
@@ -112,15 +114,15 @@
     }
  
     .logo {
-        order: 2;
         margin-bottom: 32px;
+        order: 2;
     }
 
     .contact {
-        order: 3;
-        flex-basis: 100%;
         align-items: center;
         display: flex;
+        flex-basis: 100%;
         flex-direction: column;
+        order: 3;
     }
 }

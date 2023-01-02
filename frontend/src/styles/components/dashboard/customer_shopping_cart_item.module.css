@@ -1,0 +1,29 @@
+.ShoppingCartItem {
+    padding: 8px 0;
+}
+
+.ShoppingCartItem h4 {
+    margin-bottom: 0;
+}
+
+.ShoppingCartItem button {
+    background: var(--error);
+    border: none;
+    border-radius: 8px;
+    color: var(--neutral);
+    cursor: pointer;
+    padding: 8px;
+}
+
+.row {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+}
+
+.totalPrice {
+    color: var(--secondary);
+    font-size: 1.2rem;
+    font-weight: bold;
+}

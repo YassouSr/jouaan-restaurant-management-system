@@ -1,15 +1,15 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
-import DefaultLogo from "../../assets/imgs/default_logo.svg";
-import MobileLogo from "../../assets/imgs/logo_bg_light.svg";
+import { NavLink, useNavigate } from "react-router-dom";
+
 import Button from "../shared/Button";
 import Container from "../shared/Container";
-import styles from "../../styles/components/landing/navbar.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import DefaultLogo from "../../assets/imgs/default_logo.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HashLink } from "react-router-hash-link";
-import { NAVBAR_LINKS } from "../../assets/data/dummy";
-import { NavLink } from "react-router-dom";
+import MobileLogo from "../../assets/imgs/logo_bg_light.svg";
+import { NAVBAR_LINKS } from "../../assets/data";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import styles from "../../styles/components/landing/navbar.module.css";
+import { useState } from "react";
 
 const Navbar = () => {
   const [navBtn, setNavBtn] = useState(false);

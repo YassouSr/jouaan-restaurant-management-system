@@ -1,8 +1,9 @@
-import styles from '../../styles/components/landing/location.module.css'
+import { ADDRESS, WORKING_DAYS, WORKING_HOURS } from '../../assets/data';
+
 import Container from "../shared/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { ADDRESS, WORKING_DAYS, WORKING_HOURS } from '../../assets/data/dummy';
+import styles from '../../styles/components/landing/location.module.css';
 
 const Location = () => {
   return ( 

@@ -1,14 +1,15 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
-import styles from "../../styles/components/shared/notification.module.css";
-import Container from "./Container";
 import {
-  faCircleInfo,
-  faCircleExclamation,
-  faTriangleExclamation,
   faCircleCheck,
+  faCircleExclamation,
+  faCircleInfo,
+  faTriangleExclamation
 } from "@fortawesome/free-solid-svg-icons";
+
+import Container from "./Container";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import styles from "../../styles/components/shared/notification.module.css";
+import { useState } from "react";
 
 const Notification = ({ text, type }) => {
   const [clicked, setClicked] = useState(false);
