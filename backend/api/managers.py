@@ -39,5 +39,6 @@ class CustomUserManager(BaseUserManager):
             first_name=first_name
         )
         user.is_admin = True
+        user.is_superuser = True
         user.save(using=self._db)
         return user

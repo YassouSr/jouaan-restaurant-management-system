@@ -10,34 +10,174 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.conf import settings
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-
-
-# exceptions
-class RequiredRequestDataField(Exception):
-    def __init__(self, field):
-        self.field = field
-        self.message = field + " is required in request body."
-        super().__init__(self.message)
-
-class NoneRequestDataField(Exception):
-    def __init__(self, field):
-        self.field = field
-        self.message = field + " must not be none."
-        super().__init__(self.message)
-
+from api.errors import RequiredRequestDataField, NoneRequestDataField
+from api.customer_permissions import *
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse
+from django.core.mail import send_mail
+from django.utils.encoding import smart_str, smart_bytes, DjangoUnicodeDecodeError
+ 
 
 # Authentication
 class CustomerSignupView(APIView):
+    # signup for customer
     permission_classes = [permissions.AllowAny]
-
+    
     def post(self, request):
         serializer = CustomerSignupSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-            return Response(messages["customer_signup"], status=status.HTTP_201_CREATED)
+            return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class AdminSignupView(APIView):
+    # signup for admin
+    permission_classes = [permissions.IsAdminUser] # only superuser
+    
+    def post(self, request):
+        serializer = AdminSignupSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class StaffSignupView(APIView):
+    # signup for chef and driver
+    permission_classes = [permissions.IsAuthenticated & IsRAdminUser] # admin
+    
+    def post(self, request):
+        serializer = StaffSignupSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+class UserSigninView(APIView):
+    permission_classes = [permissions.AllowAny]
+    
+    def post(self, request):
+        serializer = UserSigninSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            return Response(serializer.validated_data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserLogoutView(APIView):
+    # logout for all users
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class RequestPasswordResetEmailView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        serializer = ResetPasswordRequestSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            email = serializer.validated_data.get('email')
+            user = User.objects.get(email=email)
+            uidb64 = urlsafe_base64_encode(smart_bytes(user.id))
+            token = PasswordResetTokenGenerator().make_token(user)
+            current_site = get_current_site(request=request).domain
+            relativeLink = reverse(
+                'password_reset_confirm', kwargs={'uidb64': uidb64, 'token': token}
+            )
+
+            redirect_url = request.data.get('redirect_url', '')
+            absurl = 'http://'+current_site + relativeLink
+            email_body = 'Hello, \n Use link below to reset your password  \n' + \
+                absurl+"?redirect_url="+redirect_url
+            
+            # send email
+            send_mail(
+                subject='Reset your passsword', 
+                message=email_body, 
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[user.email]
+            )
+
+            return Response({'success': 'We have sent you a link to reset your password'}, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PasswordResetTokenCheckView(APIView):
+    def get(self, request, uidb64, token):
+        try:
+            user_id = smart_str(urlsafe_base64_decode(uidb64))
+            user= User.objects.get(id=user_id)
+            if not PasswordResetTokenGenerator().check_token(user,token):
+                return Response({'error':'token is not valid, please check the new one'},status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'sucess':True, 'message':'Credential Valid','uidb64':uidb64, 'token':token},status=status.HTTP_200_OK)
+
+        except DjangoUnicodeDecodeError:
+            return Response({'error':'token is not valid, please check the new one'},status=status.HTTP_401_UNAUTHORIZED)
+
+
+class SetNewPasswordAPIView(APIView):
+    serializer_class = SetNewPasswordSerializer
+
+    def patch(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            return Response({'success': True, 'message': 'Password reset success'}, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+############"""" Authentication using http only cookie
+
+from django.contrib.auth import authenticate
+class LoginHTTPOnlyCookieView(APIView):
+    def post(self, request, format=None):
+        serializer = UserSigninSerializer(data=request.data)
+        response = Response()  
+
+        if serializer.is_valid(raise_exception=True):
+            response.set_cookie(
+                key = settings.SIMPLE_JWT['AUTH_COOKIE'], 
+                value = serializer.validated_data.get('access'),
+                expires = settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+                secure = settings.SIMPLE_JWT['AUTH_COOKIE_SECURE'],
+                httponly = settings.SIMPLE_JWT['AUTH_COOKIE_HTTP_ONLY'],
+                samesite = settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
+            ) 
+            response.data = {"Success" : "Login successfully","data":serializer.validated_data}
+            return response
+        else:
+            return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#####################""""""
 
 # Override 'token/' endpoint
 class CustomerSigninView(TokenObtainPairView):
@@ -77,23 +217,6 @@ class CustomerSigninView(TokenObtainPairView):
             return Response(serializer.validated_data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class UserLogoutView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-
-    # put user refresh token to the black list
-    def post(self, request):
-        try:
-            refresh_token = request.data["refresh_token"]
-            token = RefreshToken(refresh_token)
-            token.blacklist()
-            return Response(
-                messages["user_logout"], status=status.HTTP_205_RESET_CONTENT
-            )
-        except Exception as e:
-            print(e)
-            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class CustomerView(APIView):
@@ -324,7 +447,6 @@ class CustomerSupportView(APIView):
             mail_subject = "Support for user with email {}".format(
                 request.data["email"]
             )
-            print("sending email ...")
             send_mail(
                 subject=mail_subject,
                 message=request.data["description"],
@@ -333,5 +455,4 @@ class CustomerSupportView(APIView):
             )
             return Response(status=status.HTTP_200_OK)
         except Exception as e:
-            print(e)
             return Response(status=status.HTTP_400_BAD_REQUEST)

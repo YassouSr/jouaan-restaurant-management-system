@@ -1,9 +1,8 @@
 from pathlib import Path
 from datetime import timedelta
-import os
 import environ
-
-env = environ.Env()
+ 
+env = environ.Env() 
 environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +23,6 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
-    "django.contrib.gis",
     "api.apps.ApiConfig",
 ]
 
@@ -102,7 +100,8 @@ USE_TZ = True
 # JWT Authentication
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework_simplejwt.authentication.JWTAuthentication"
+        # "rest_framework_simplejwt.authentication.JWTAuthentication"
+        "api.custom_auth.CustomAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
 }
@@ -113,12 +112,23 @@ SIMPLE_JWT = {
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
     "AUTH_HEADER_TYPES": ("JWT"),
+    "UPDATE_LAST_LOGIN": True,
+ 
+    # custom
+  'AUTH_COOKIE': 'JOUAAN_JWT_TOKEN_DEV',  # Cookie name. Enables cookies if value is set.
+  'AUTH_COOKIE_DOMAIN': None,     # A string like "example.com", or None for standard domain cookie.
+  'AUTH_COOKIE_SECURE': False,    # Whether the auth cookies should be secure (https:// only).
+  'AUTH_COOKIE_HTTP_ONLY' : True, # Http only cookie flag.It's not fetch by javascript.
+  'AUTH_COOKIE_PATH': '/',        # The path of the auth cookie.
+  'AUTH_COOKIE_SAMESITE': 'None',  # Whether to set the flag restricting cookie leaks on cross-site requests. This can be 'Lax', 'Strict', or None to disable the flag.
 }
 
 # CORS
 CORS_ORIGIN_WHITELIST = (
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://localhost:2000",
+    "http://127.0.0.1:2000",
 )
 
 CORS_ALLOW_CREDENTIALS = True
@@ -144,6 +154,7 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
     "x-requested-with",
     "signature",
+    "set-cookie"
 ]
 
 # Django email library
@@ -154,17 +165,3 @@ EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_HOST_USER = env('HOST_USER') # sender of mail (from:...)
 EMAIL_HOST_PASSWORD = env('HOST_PASSWORD')
 RECIPIENT_ADDRESS= env('RECIPIENT_ADDRESS') # receiver of mails (to:...)
-
-# For Geodjango (GDAL)
-if os.name == "nt":
-    VENV_BASE = os.environ["VIRTUAL_ENV"]
-    os.environ["PATH"] = (
-        os.path.join(VENV_BASE, "Lib\\site-packages\\osgeo") + ";" + os.environ["PATH"]
-    )
-    os.environ["PROJ_LIB"] = (
-        os.path.join(VENV_BASE, "Lib\\site-packages\\osgeo\\data\\proj")
-        + ";"
-        + os.environ["PATH"]
-    )
-
-SPATIALITE_LIBRARY_PATH = "mod_spatialite"

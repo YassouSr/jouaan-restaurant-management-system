@@ -3,14 +3,14 @@ import { useContext, useState } from "react";
 
 import Button from "../shared/Button";
 import { MainContext } from "../../contexts/MainContext";
-import { axiosInstance } from "../../axios";
+import { axiosInstance, axiosInstanceHTTPOnlyCookie } from "../../axios";
 import styles from "../../styles/components/shared/form.module.css";
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const mainContext = useContext(MainContext)
   const initialFormData = Object.freeze({
-    email: "",
+    email: "", 
     password: "",
   });
   const [formData, updateFormData] = useState(initialFormData);
@@ -27,7 +27,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     axiosInstance
-      .post(`customer/signin/`, {
+      .post(`customer/signin/`, { 
         email: formData.email, 
         password: formData.password,
       })
@@ -51,6 +51,25 @@ const LoginForm = () => {
         }
         
 				navigate('/customer/menu/');
+			})
+      .catch((error) => {
+        console.log(error);
+      })
+  };
+
+  const handleSubmit2 = async (e) => {
+    e.preventDefault();
+
+    await axiosInstanceHTTPOnlyCookie
+      .post(`auth/httponly/login/`, { 
+        email: formData.email, 
+        password: formData.password,
+      },
+      { withCredentials: true }
+      )
+      .then((res) => {
+        console.log("login : ")
+        console.log(res)
 			})
       .catch((error) => {
         console.log(error);

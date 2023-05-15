@@ -74,9 +74,11 @@ const ShoppingCartContextProvider = (props) => {
         // @ts-ignore
         listCustomerPlates.map(
             plate =>
-            plate.id === id                               
-            ? { ...plate, quantity: plate.quantity - 1 }
-            : plate                                     
+            {
+              return (plate.id === id                               
+                ? { ...plate, quantity: plate.quantity - 1 }
+                : plate) 
+            }                                 
         ))
     }
   };
@@ -94,7 +96,7 @@ const ShoppingCartContextProvider = (props) => {
     let totalPrice = 0
 
     listCustomerPlates.map(plate => {
-        totalPrice = totalPrice +  (plate.price * plate.quantity)
+        return totalPrice = totalPrice +  (plate.price * plate.quantity)
     })
 
     return totalPrice

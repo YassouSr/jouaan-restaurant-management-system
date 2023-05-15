@@ -2,11 +2,11 @@
 
 it is an online management system for an algerian restaurant. It has four types of users :
 
-- Customers: They can order plates, update or delete their profile, write / delete or update their feedback and send an email for aquiring help.
+- Customers: They can order plates, update or delete their profile, write / delete or update their feedback and send an email for acquiring help.
 - Chefs: They detect new customer orders, prepare them and update order status to 'prepared'. They can also update their profile, send an email for help, create plates and their categories.
 - Drivers: They can detect orders with status 'prepared' which they are ready to be delivered, they they can see for each order, the customer address so they can deliver to his/her house, they can also update their profile and send email for help.
 - Admin: The last type of user which he can add or delete a user (chef, driver), update restaurant information, see list of feedbacks, see statistics (like how many orders the chef X has prepared).
-
+ 
 ## Technologies
 
 The technologies used for this project are :

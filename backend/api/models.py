@@ -8,6 +8,20 @@ ORDER_STATUS = [
         ['being_delivered', 'Being delivered'],
         ['completed', 'Completed'], # order has been delivered successfully
     ]
+ 
+PAYMENT_METHODS = [
+        ['cash', 'Cash'],
+        ['edahabia', 'Edahabia Card'],
+        ['visa', 'Visa Card'],
+        ['paypal', 'Paypal']
+    ]
+
+USER_ROLES = [
+        ['admin', 'Admin'],
+        ['customer', 'Customer'],
+        ['chef', 'Chef'],
+        ['driver', 'Driver']
+    ]
     
 # Default authentication User model
 class User(AbstractBaseUser, PermissionsMixin):
@@ -16,6 +30,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=50, validators=[validate_slug])
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    role = models.CharField(max_length=20, choices=USER_ROLES, default=USER_ROLES[2])
 
     objects = CustomUserManager()
 
@@ -41,26 +56,30 @@ class User(AbstractBaseUser, PermissionsMixin):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
-class RestaurantAdmin(User):
+class RestaurantAdmin(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     email_restaurant = models.EmailField(unique=True)
     address_restaurant = models.CharField(max_length=100)
     phone_number_restaurant = models.CharField(max_length=20)
 
-class Customer(User):
+class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     address_url = models.URLField(max_length=100, blank=True, null=True)
+
+class Chef(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=20, blank=True, null=True)
+
+class Driver(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=20, null=True, blank=True)
 
 class Address(models.Model):
     longitude = models.FloatField()
     latitude = models.FloatField()
     customer = models.OneToOneField(Customer, blank=True, null=True, on_delete=models.CASCADE)
-
-class Chef(User):
-    phone_number = models.CharField(max_length=20, blank=True, null=True)
-
-class Driver(User):
-    phone_number = models.CharField(max_length=20, null=True, blank=True)
-    address = models.CharField(max_length=100, null=True, blank=True)
+    driver = models.OneToOneField(Driver, blank=True, null=True, on_delete=models.CASCADE)
 
 class PlateCategory(models.Model):
     name = models.CharField(unique=True, max_length=50)
@@ -78,7 +97,7 @@ class Plate(models.Model):
         return self.name
 
 class Payment(models.Model):
-    name = models.CharField(unique=True, max_length=50)
+    name = models.CharField(unique=True, max_length=50, choices=PAYMENT_METHODS)
 
     def __str__(self):
         return self.name

@@ -1,7 +1,7 @@
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import React, { useEffect } from "react";
-
+ 
 import mapboxgl from "mapbox-gl";
 
 // @ts-ignore
@@ -18,8 +18,8 @@ const CustomerMap = ({ userAddressMapRef }) => {
   const staticImageZoom = process.env.REACT_APP_STATIC_IMAGE_ZOOM;
   const staticImageApiUsername = process.env.REACT_APP_STATIC_IMAGE_USERNAME;
   const staticImageApiStyleId = process.env.REACT_APP_STATIC_IMAGE_STYLE_ID;
-  const staticImageApiWidth = process.env.REACT_APP_STATIC_IMAGE_WIDTH;
-  const staticImageApiHeight = process.env.REACT_APP_STATIC_IMAGE_HEIGHT;
+  const staticImageApiWidth = process.env.REACT_APP_STATIC_IMAGE_WIDTH ;
+  const staticImageApiHeight = process.env.REACT_APP_STATIC_IMAGE_HEIGHT ;
 
   // static image is set by default to the restaurant address
   const mapStyles = {
@@ -102,6 +102,7 @@ const CustomerMap = ({ userAddressMapRef }) => {
     map.on("error", () => {
       console.log("Something got wrong with map.");
     });
+
   }, []);
 
   return (

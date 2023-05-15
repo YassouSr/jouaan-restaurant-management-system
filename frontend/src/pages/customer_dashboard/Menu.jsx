@@ -82,7 +82,7 @@ const Menu = () => {
         ) : (
           plates.map((plate, i) => {
             return (
-              <PlateCard
+              <PlateCard 
                 key={i}
                 myKey={i}
                 image={Pizza}
